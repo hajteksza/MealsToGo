@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "@react-native-community",
+    "plugin:flowtype/recommended"
+  ],
+  "parser": "@babel/eslint-parser"
+}
