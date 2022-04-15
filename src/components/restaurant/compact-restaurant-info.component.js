@@ -1,5 +1,6 @@
 import React from "react"
-import {TouchableOpacity} from "react-native"
+import {TouchableOpacity, Platform} from "react-native"
+import {WebView} from "react-native-webview"
 import styled from "styled-components/native"
 import { Text } from "../typography/text.component"
 
@@ -15,11 +16,19 @@ const Item = styled.View`
     align-items: center;
 `;
 
-export const CompactRestaurantInfo = ({restaurant}) => {
+const CompactWebview = styled(WebView)`
+    border-radius: 10px;
+    width: 120px;
+    height: 100px;
+`;
 
+const isAndroid = Platform.OS === "android";
+
+export const CompactRestaurantInfo = ({restaurant, isMap}) => {
+    const Image = (isAndroid && isMap) ? CompactWebview : CompactImage;
     return (
         <Item>
-            <CompactImage source={{ uri: restaurant.photos[0]}}/>
+            <Image source={{ uri: restaurant.photos[0]}}/>
             <Text center variant="caption" numberoflines={3}>
                 {restaurant.name}
             </Text>
